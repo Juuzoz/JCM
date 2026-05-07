@@ -61,3 +61,9 @@ The menu can be found in the inventory screen, by the map and crafting menu. It 
 (Again, all adjustable in MCM)
 
 Everything is toggleable and cheats are disabled by default.
+
+---
+**Installation:**
+
+Make sure you have Metro Mod Loader v3.1.1 or newer and Mod Configuration Menu installed first.
+Then just put the JCM.vmz file into the mods folder.
