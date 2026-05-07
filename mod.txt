@@ -1,0 +1,11 @@
+[mod]
+name="Juuzoz Cheat Menu"
+id="juuzoz-jcm"
+version="3.0.1"
+
+[autoload]
+jcm="res://mods/JCM/Main.gd"
+
+[updates]
+
+modworkshop=56031
