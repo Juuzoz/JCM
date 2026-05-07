@@ -35,6 +35,10 @@ var was_dead = false
 var noclip_enabled = false
 var _was_noclip = false 
 
+# Movement State Trackers
+var _was_fast_movement = false
+var _was_big_jumps = false
+
 # MCM defaults
 var key_noclip = KEY_CAPSLOCK
 var key_refresh_container = KEY_KP_1 
@@ -398,16 +402,29 @@ func _handle_inventory_limits(interface):
             if inventory:
                 for item in inventory.get_children(): _repair_item_if_applicable(item)
 
-# Applies custom walk/sprint speeds and jump heights to the player controller.
+# Applies custom speeds when ON, and reverts to vanilla when turned OFF.
 func _handle_movement(controller):
-    if controller:
-        if fast_movement_enabled:
-            controller.walkSpeed = custom_walk_speed
-            controller.sprintSpeed = custom_sprint_speed
-        else:
-            controller.walkSpeed = 2.5
-            controller.sprintSpeed = 5.0
-        controller.jumpVelocity = custom_jump_velocity if big_jumps_enabled else 7.0
+    if not controller: return
+    
+    # --- Walk & Sprint ---
+    if fast_movement_enabled:
+        controller.walkSpeed = custom_walk_speed
+        controller.sprintSpeed = custom_sprint_speed
+        _was_fast_movement = true
+    elif _was_fast_movement:
+        # This only runs for a single frame right after you turn the cheat off.
+        controller.walkSpeed = 2.5
+        controller.sprintSpeed = 5.0
+        _was_fast_movement = false
+        
+    # --- Jumps ---
+    if big_jumps_enabled:
+        controller.jumpVelocity = custom_jump_velocity
+        _was_big_jumps = true
+    elif _was_big_jumps:
+        # This only runs for a single frame right after you turn the cheat off.
+        controller.jumpVelocity = 7.0
+        _was_big_jumps = false
 
 # Freezes health and core survival needs. 
 func _handle_needs_and_god_mode(controller):
