@@ -1,22 +1,9 @@
 extends Node
 
-const WEAPONS = {
-    # Pistols
-    "Makarov": "res://Items/Weapons/Makarov/Makarov.tres",
-    "Colt 1911": "res://Items/Weapons/Colt_1911/Colt_1911.tres",
-    "Glock 17": "res://Items/Weapons/Glock_17/Glock_17.tres",
-    "P320": "res://Items/Weapons/P320/P320.tres",
-    
-    # SMGs
-    "MP5": "res://Items/Weapons/MP5/MP5.tres",
-    "MP5K": "res://Items/Weapons/MP5K/MP5K.tres",
-    "MP5SD": "res://Items/Weapons/MP5SD/MP5SD.tres",
-    "MP7": "res://Items/Weapons/MP7/MP7.tres",
-    "KP-31": "res://Items/Weapons/KP-31/KP-31.tres",
-    "AKS-74U": "res://Items/Weapons/AKS-74U/AKS-74U.tres",
-    
-    # Assault Rifles
+const PRIMARY_WEAPONS = {
+    "-- Assault Rifles --": "",
     "AKM": "res://Items/Weapons/AKM/AKM.tres",
+    "AKS-74U": "res://Items/Weapons/AKS-74U/AKS-74U.tres",
     "AK-12": "res://Items/Weapons/AK-12/AK-12.tres",
     "M4A1": "res://Items/Weapons/M4A1/M4A1.tres",
     "MK18": "res://Items/Weapons/MK18/MK18.tres",
@@ -26,25 +13,34 @@ const WEAPONS = {
     "RK-95": "res://Items/Weapons/RK-95/RK-95.tres",
     "KAR-21 (.223)": "res://Items/Weapons/KAR-21/KAR-21_223.tres",
     "KAR-21 (.308)": "res://Items/Weapons/KAR-21/KAR-21_308.tres",
-    
-    # Snipers & Shotguns
+
+    "-- Sniper Rifles --": "",
     "SVD Sniper": "res://Items/Weapons/SVD/SVD.tres",
     "VSS Vintorez": "res://Items/Weapons/VSS/VSS.tres",
     "M78": "res://Items/Weapons/M78/M78.tres",
     "Mosin": "res://Items/Weapons/Mosin/Mosin.tres",
-    "Remington 870": "res://Items/Weapons/Remington_870/Remington_870.tres",
-    
-    # Knives & Grenades
-    "Jaeger 140 Knife": "res://Items/Knives/Jaeger_140/Jaeger_140.tres",
-    "Skrama 200 Knife": "res://Items/Knives/Skrama_200/Skrama_200.tres",
-    "Skrama 240 Knife": "res://Items/Knives/Skrama_240/Skrama_240.tres",
-    "F1 Grenade": "res://Items/Grenades/F1/F1.tres",
-    "RGD-5 Grenade": "res://Items/Grenades/RGD-5/RGD-5.tres",
-    "M43 Grenade": "res://Items/Grenades/M43/M43.tres",
-    "M50 Grenade": "res://Items/Grenades/M50/M50.tres"
+
+    "-- Shotguns --": "",
+    "Remington 870": "res://Items/Weapons/Remington_870/Remington_870.tres"
+}
+
+const SECONDARY_WEAPONS = {
+    "-- Pistols --": "",
+    "Makarov": "res://Items/Weapons/Makarov/Makarov.tres",
+    "Colt 1911": "res://Items/Weapons/Colt_1911/Colt_1911.tres",
+    "Glock 17": "res://Items/Weapons/Glock_17/Glock_17.tres",
+    "P320": "res://Items/Weapons/P320/P320.tres",
+
+    "-- SMGs --": "",
+    "MP5": "res://Items/Weapons/MP5/MP5.tres",
+    "MP5K": "res://Items/Weapons/MP5K/MP5K.tres",
+    "MP5SD": "res://Items/Weapons/MP5SD/MP5SD.tres",
+    "MP7": "res://Items/Weapons/MP7/MP7.tres",
+    "KP-31": "res://Items/Weapons/KP-31/KP-31.tres",
 }
 
 const MAGAZINES = {
+    "-- Handgun & SMG Mags --": "",
     "Makarov Mag": "res://Items/Weapons/Makarov/Makarov_Magazine.tres",
     "Colt 1911 Mag": "res://Items/Weapons/Colt_1911/Colt_1911_Magazine.tres",
     "Glock 17 Mag": "res://Items/Weapons/Glock_17/Glock_17_Magazine.tres",
@@ -52,8 +48,10 @@ const MAGAZINES = {
     "MP5 Mag": "res://Items/Weapons/MP5/MP5_Magazine.tres",
     "MP7 Mag": "res://Items/Weapons/MP7/MP7_Magazine.tres",
     "KP-31 Drum": "res://Items/Weapons/KP-31/KP-31_Drum.tres",
-    "AKS-74U Mag": "res://Items/Weapons/AKS-74U/AKS-74U_Magazine.tres",
+    
+    "-- Rifle & Sniper Mags --": "",
     "AKM Mag": "res://Items/Weapons/AKM/AKM_Magazine.tres",
+    "AKS-74U Mag": "res://Items/Weapons/AKS-74U/AKS-74U_Magazine.tres",
     "AK-12 Mag": "res://Items/Weapons/AK-12/AK-12_Magazine.tres",
     "STANAG Mag": "res://Items/Weapons/M4A1/STANAG_Magazine.tres",
     "RK Mag": "res://Items/Weapons/RK-62/RK_Magazine.tres",
@@ -65,20 +63,26 @@ const MAGAZINES = {
 }
 
 const AMMO = {
+    "-- Pistol & SMG Calibers --": "",
     "Ammo 9x18mm": "res://Items/Ammo/Ammo_9x18/Ammo_9x18.tres",
     "Ammo 9x19mm": "res://Items/Ammo/Ammo_9x19/Ammo_9x19.tres",
     "Ammo .45 ACP": "res://Items/Ammo/Ammo_45ACP/Ammo_45ACP.tres",
     "Ammo 9x39mm": "res://Items/Ammo/Ammo_9x39/Ammo_9x39.tres",
     "Ammo 4.6x30mm": "res://Items/Ammo/Ammo_46x30/Ammo_46x30.tres",
+    
+    "-- Rifle Calibers --": "",
     "Ammo 5.56x45mm (.223)": "res://Items/Ammo/Ammo_223/Ammo_223.tres",
     "Ammo 7.62x51mm (.308)": "res://Items/Ammo/Ammo_308/Ammo_308.tres",
     "Ammo 5.45x39mm": "res://Items/Ammo/Ammo_545x39/Ammo_545x39.tres",
     "Ammo 7.62x39mm": "res://Items/Ammo/Ammo_762x39/Ammo_762x39.tres",
     "Ammo 7.62x54mmR": "res://Items/Ammo/Ammo_762x54R/Ammo_762x54R.tres",
+    
+    "-- Shotgun Shells --": "",
     "Ammo 12 Gauge": "res://Items/Ammo/Ammo_12x70/Ammo_12x70.tres"
 }
 
 const MEDICAL = {
+    "-- First Aid --": "",
     "Medkit": "res://Items/Medical/Medkit/Medkit.tres",
     "IFAK": "res://Items/Medical/IFAK/IFAK.tres",
     "AFAK": "res://Items/Medical/AFAK/AFAK.tres",
@@ -88,15 +92,19 @@ const MEDICAL = {
     "Improvised Tourniquet": "res://Items/Medical/Tourniquet_Improvised/Tourniquet_Improvised.tres",
     "Splint": "res://Items/Medical/Splint/Splint.tres",
     "Improvised Splint": "res://Items/Medical/Splint_Improvised/Splint_Improvised.tres",
+    
+    "-- Medication --": "",
     "Painkillers": "res://Items/Medical/Painkillers/Painkillers.tres",
     "Antibiotics": "res://Items/Medical/Antibiotics/Antibiotics.tres",
     "Cold Medicine": "res://Items/Medical/Cold_Medicine/Cold_Medicine.tres",
-    "Gum": "res://Items/Medical/Gum/Gum.tres",
     "Melatonin": "res://Items/Medical/Melatonin/Melatonin.tres",
+    
+    "-- Hygiene & Utility --": "",
     "Antiseptic": "res://Items/Medical/Antiseptic/Antiseptic.tres",
     "Saline": "res://Items/Medical/Saline/Saline.tres",
     "Lotion": "res://Items/Medical/Lotion/Lotion.tres",
     "Balm": "res://Items/Medical/Balm/Balm.tres",
+    "Gum": "res://Items/Medical/Gum/Gum.tres",
     "Deodorant": "res://Items/Medical/Deodorant/Deodorant.tres",
     "Wipes": "res://Items/Medical/Wipes/Wipes.tres",
     "Tissues": "res://Items/Medical/Tissues/Tissues.tres",
@@ -104,26 +112,26 @@ const MEDICAL = {
 }
 
 const GEAR = {
-    # Helmets & Night Vision
+    "-- Helmets & Night Vision --": "",
     "Helmet SSh-39": "res://Items/Helmets/SSh-39/SSh-39.tres",
     "Helmet Police": "res://Items/Helmets/Helmet_Police/Helmet_Police.tres",
     "PV7 NVG": "res://Items/Electronics/PV7/PV7.tres",
     
-    # Armor Plates
+    "-- Armor Plates --": "",
     "Armor Plate II": "res://Items/Armor/Armor_Plate_II.tres",
     "Armor Plate IIIA": "res://Items/Armor/Armor_Plate_IIIA.tres",
     "Armor Plate III": "res://Items/Armor/Armor_Plate_III.tres",
     "Armor Plate III+": "res://Items/Armor/Armor_Plate_III+.tres",
     "Armor Plate IV": "res://Items/Armor/Armor_Plate_IV.tres",
     
-    # Rigs & Vests
+    "-- Rigs & Vests --": "",
     "Rig LVPC Green": "res://Items/Rigs/LVPC/LVPC_Green.tres",
     "Rig LVPC M05": "res://Items/Rigs/LVPC/LVPC_M05.tres",
     "Rig LVPC Winter": "res://Items/Rigs/LVPC/LVPC_Winter.tres",
     "Rig K19": "res://Items/Rigs/K19/K19.tres",
     "Vest Fishing": "res://Items/Rigs/Vest_Fishing/Vest_Fishing.tres",
     
-    # Backpacks
+    "-- Backpacks --": "",
     "Backpack Nomad": "res://Items/Backpacks/Backpack_Nomad/Backpack_Nomad.tres",
     "Backpack Patrol": "res://Items/Backpacks/Backpack_Patrol/Backpack_Patrol.tres",
     "Backpack Jaeger Black": "res://Items/Backpacks/Backpack_Jaeger/Backpack_Jaeger_Black.tres",
@@ -132,17 +140,30 @@ const GEAR = {
     "Backpack Jaeger M05": "res://Items/Backpacks/Backpack_Jaeger/Backpack_Jaeger_M05.tres",
     "Duffel Retro": "res://Items/Backpacks/Duffel_Retro/Duffel_Retro.tres",
     
-    # Belts
+    "-- Belts --": "",
     "Belt Kukkaro Black": "res://Items/Belts/Kukkaro/Kukkaro_Black.tres",
     "Belt Kukkaro Brown": "res://Items/Belts/Kukkaro/Kukkaro_Brown.tres",
     "Belt Kukkaro Green": "res://Items/Belts/Kukkaro/Kukkaro_Green.tres",
     "Belt Kukkaro M05": "res://Items/Belts/Kukkaro/Kukkaro_M05.tres",
+
+    "-- Knives --": "",
+    "Jaeger 140 Knife": "res://Items/Knives/Jaeger_140/Jaeger_140.tres",
+    "Skrama 200 Knife": "res://Items/Knives/Skrama_200/Skrama_200.tres",
+    "Skrama 240 Knife": "res://Items/Knives/Skrama_240/Skrama_240.tres",
+
+    "-- Grenades --": "",
+    "F1 Grenade": "res://Items/Grenades/F1/F1.tres",
+    "RGD-5 Grenade": "res://Items/Grenades/RGD-5/RGD-5.tres",
+    "M43 Grenade": "res://Items/Grenades/M43/M43.tres",
+    "M50 Grenade": "res://Items/Grenades/M50/M50.tres",
     
-    # Clothing
+    "-- Hats --": "",
     "Hat Sauna": "res://Items/Clothing/Hat_Sauna/Hat_Sauna.tres",
     "Hat Mosquito": "res://Items/Clothing/Hat_Mosquito/Hat_Mosquito.tres",
     "Beanie Flame": "res://Items/Clothing/Beanie_Flame/Beanie_Flame.tres",
     "Cap M62": "res://Items/Clothing/Cap_M62/Cap_M62.tres",
+
+    "-- Torso --": "",
     "Jacket M62": "res://Items/Clothing/Jacket_M62/Jacket_M62.tres",
     "Hoodie Gray": "res://Items/Clothing/Hoodie_Gray/Hoodie_Gray.tres",
     "Hoodie Border Zone": "res://Items/Clothing/Hoodie_Border_Zone/Hoodie_Border_Zone.tres",
@@ -153,18 +174,22 @@ const GEAR = {
     "Jacket Winter Blue": "res://Items/Clothing/Jacket_Winter_Blue/Jacket_Winter_Blue.tres",
     "Jacket Winter Red": "res://Items/Clothing/Jacket_Winter_Red/Jacket_Winter_Red.tres",
     "Jacket Santa": "res://Items/Clothing/Jacket_Santa/Jacket_Santa.tres",
+
+    "-- Pants --": "",
     "Jeans Black": "res://Items/Clothing/Jeans_Black/Jeans_Black.tres",
     "Pants Hiking": "res://Items/Clothing/Pants_Hiking/Pants_Hiking.tres",
+
+    "-- Boots & Hands --": "",
     "Boots Combat": "res://Items/Clothing/Boots_Combat/Boots_Combat.tres",
     "Gloves Leather": "res://Items/Clothing/Gloves_Leather/Gloves_Leather.tres",
     "Gloves Work": "res://Items/Clothing/Gloves_Work/Gloves_Work.tres"
 }
 
 const ATTACHMENTS = {
-    # Weapon Parts
+    "-- Weapon Parts --": "",
     "KAR-21 Barrel": "res://Items/Weapons/KAR-21/KAR-21_Barrel.tres",
 
-    # Optics
+    "-- Optics --": "",
     "ACOG Scope": "res://Items/Attachments/ACOG/ACOG.tres",
     "EXPS Holo": "res://Items/Attachments/EXPS/EXPS.tres",
     "RMR Sight": "res://Items/Attachments/RMR/RMR.tres",
@@ -180,7 +205,7 @@ const ATTACHMENTS = {
     "Micro Sight": "res://Items/Attachments/Micro/Micro.tres",
     "MRO Sight": "res://Items/Attachments/MRO/MRO.tres",
     
-    # Lasers & Suppressors
+    "-- Lasers & Suppressors --": "",
     "ANPEQ Laser": "res://Items/Attachments/ANPEQ/ANPEQ.tres",
     "PTN Suppressor": "res://Items/Attachments/PTN/PTN.tres",
     "Rider Suppressor": "res://Items/Attachments/Rider/Rider.tres",
@@ -194,13 +219,15 @@ const ATTACHMENTS = {
 }
 
 const FOOD = {
+    "-- Hydration --": "",
     "Water Bottle": "res://Items/Consumables/Water_Bottle/Water_Bottle.tres",
     "Energy Drink": "res://Items/Consumables/Energy_Drink/Energy_Drink.tres",
     "Soda Lemon": "res://Items/Consumables/Soda_Lemon/Soda_Lemon.tres",
     "Juice Orange": "res://Items/Consumables/Juice_Orange/Juice_Orange.tres",
     "Juice Pear": "res://Items/Consumables/Juice_Pear/Juice_Pear.tres",
     "Juice Raspberry": "res://Items/Consumables/Juice_Raspberry/Juice_Raspberry.tres",
-    "Field Ration (MRE)": "res://Items/Consumables/Field_Ration/Field_Ration.tres",
+    
+    "-- Canned Goods --": "",
     "Canned Meat": "res://Items/Consumables/Canned_Meat/Canned_Meat.tres",
     "Canned Meatballs": "res://Items/Consumables/Canned_Meatballs/Canned_Meatballs.tres",
     "Canned Peaches": "res://Items/Consumables/Canned_Peaches/Canned_Peaches.tres",
@@ -210,6 +237,10 @@ const FOOD = {
     "Canned Pineapple": "res://Items/Consumables/Canned_Pineapple/Canned_Pineapple.tres",
     "Canned Tomatoes": "res://Items/Consumables/Canned_Tomatoes/Canned_Tomatoes.tres",
     "Canned Tuna": "res://Items/Consumables/Canned_Tuna/Canned_Tuna.tres",
+    "Cat Food": "res://Items/Consumables/Cat_Food/Cat_Food.tres",
+    
+    "-- Snacks & Ingredients --": "",
+    "Field Ration (MRE)": "res://Items/Consumables/Field_Ration/Field_Ration.tres",
     "Crackers": "res://Items/Consumables/Crackers/Crackers.tres",
     "Energy Powder": "res://Items/Consumables/Energy_Powder/Energy_Powder.tres",
     "Potato": "res://Items/Consumables/Potato/Potato.tres",
@@ -218,20 +249,25 @@ const FOOD = {
     "Peanuts": "res://Items/Consumables/Peanuts/Peanuts.tres",
     "Chocolate War": "res://Items/Consumables/Chocolate_War/Chocolate_War.tres",
     "Coffee": "res://Items/Consumables/Coffee/Coffee.tres",
-    "Coffee Brewed": "res://Items/Consumables/Coffee_Brewed/Coffee_Brewed.tres",
     "Sugar": "res://Items/Consumables/Sugar/Sugar.tres",
     "Yeast": "res://Items/Consumables/Yeast/Yeast.tres",
+    
+    "-- Cooked Meals --": "",
+    "Coffee Brewed": "res://Items/Consumables/Coffee_Brewed/Coffee_Brewed.tres",
     "Cooked Pea Soup": "res://Items/Consumables/Cooked_Pea_Soup/Cooked_Pea_Soup.tres",
     "Cooked Tomato Soup": "res://Items/Consumables/Cooked_Tomato_Soup/Cooked_Tomato_Soup.tres",
     "Cooked Fish Soup": "res://Items/Consumables/Cooked_Fish_Soup/Cooked_Fish_Soup.tres",
     "Cooked Meatballs": "res://Items/Consumables/Cooked_Meatballs/Cooked_Meatballs.tres",
     "Kompot": "res://Items/Consumables/Kompot/Kompot.tres",
+    
+    "-- Vices --": "",
     "Beer": "res://Items/Consumables/Beer/Beer.tres",
     "Kilju": "res://Items/Consumables/Kilju/Kilju.tres",
     "Snus": "res://Items/Consumables/Snus/Snus.tres",
     "Cigars": "res://Items/Consumables/Cigars/Cigars.tres",
     "Cigarettes": "res://Items/Consumables/Cigarettes/Cigarettes.tres",
-    "Cat Food": "res://Items/Consumables/Cat_Food/Cat_Food.tres",
+    
+    "-- Fish --": "",
     "Fish (Bream)": "res://Items/Fishing/Bream/Bream.tres",
     "Fish (Perch)": "res://Items/Fishing/Perch/Perch.tres",
     "Fish (Pike)": "res://Items/Fishing/Pike/Pike.tres",
@@ -239,35 +275,41 @@ const FOOD = {
 }
 
 const KEYS = {
+    "-- Shelter Keys --": "",
     "Attic Key": "res://Items/Keys/Key_Attic.tres",
     "Bunker Key": "res://Items/Keys/Key_Bunker.tres",
-    "Cellar Key": "res://Items/Keys/Key_Cellar.tres",
     "Classroom Key": "res://Items/Keys/Key_Classroom.tres",
+
+    "-- Lootroom Keys --": "",
+    "Cellar Key": "res://Items/Keys/Key_Cellar.tres",
     "Gymnasium Key": "res://Items/Keys/Key_Gymnasium.tres",
     "Tunnel Key": "res://Items/Keys/Key_Tunnel.tres"
 }
 
 const FURNITURE = {
+    "-- Storage & Cabinets --": "",
     "Freezer": "res://Assets/Freezer/Freezer_F.tres",
     "Military Crate": "res://Assets/Crate_Military/Crate_Military_F.tres",
     "Special Crate": "res://Assets/Crate_Special/Crate_Special_F.tres",
     "Cupboard": "res://Assets/Cupboard/Cupboard_F.tres",
     "Fridge": "res://Assets/Fridge/Fridge_F.tres",
+    "Stove": "res://Assets/Stove/Stove_F.tres",
     "Locker": "res://Assets/Locker/Locker_F.tres",
     "Nightstand": "res://Assets/Nightstand/Nightstand_F.tres",
-    "Lake Painting": "res://Assets/Painting/Painting_Lake_F.tres",
-    "Coat Rack": "res://Assets/Rack_Coat/Rack_Coat_F.tres",
-    "Leather Sofa": "res://Assets/Sofa_Leather/Sofa_Leather_F.tres",
     "Medical Cabinet": "res://Assets/Cabinet_Medical/Cabinet_Medical_F.tres",
     "Wood Cabinet": "res://Assets/Cabinet_Wood/Cabinet_Wood_F.tres",
     "Office Cabinet": "res://Assets/Cabinet_Office/Cabinet_Office_F.tres",
+    
+    "-- Seating & Beds --": "",
+    "Leather Sofa": "res://Assets/Sofa_Leather/Sofa_Leather_F.tres",
     "Padded Stool": "res://Assets/Stool_Padded/Stool_Padded_F.tres",
     "Military Stool": "res://Assets/Stool_Military/Stool_Military_F.tres",
-    "Rag Carpet": "res://Assets/Carpet/Carpet_Rag_F.tres",
-    "Persian Carpet": "res://Assets/Carpet/Carpet_Persian_F.tres",
-    "Rya Maria": "res://Assets/Rya/Rya_Maria_F.tres",
-    "Long Curtain": "res://Assets/Curtains/Curtain_Long_F.tres",
-    "Mini Curtain": "res://Assets/Curtains/Curtain_Mini_F.tres",
+    "Office Chair": "res://Assets/Chair_Office/Chair_Office_F.tres",
+    "School Chair": "res://Assets/Chair_School/Chair_School_F.tres",
+    "Civilian Bed": "res://Assets/Bed_Civilian/Bed_Civilian_F.tres",
+    "Nomad Bed": "res://Assets/Bed_Nomad/Bed_Nomad_F.tres",
+    
+    "-- Tables & Shelving --": "",
     "Wood Shelf": "res://Assets/Shelf_Wood/Shelf_Wood_F.tres",
     "Wall Shelf": "res://Assets/Shelf_Wall/Shelf_Wall_F.tres",
     "Metal Shelf": "res://Assets/Shelf_Metal/Shelf_Metal_F.tres",
@@ -275,12 +317,16 @@ const FURNITURE = {
     "Canteen Table": "res://Assets/Table_Canteen/Table_Canteen_F.tres",
     "Kitchen Table": "res://Assets/Table_Kitchen/Table_Kitchen_F.tres",
     "Office Table": "res://Assets/Table_Office/Table_Office_F.tres",
-    "Stove": "res://Assets/Stove/Stove_F.tres",
-    "Civilian Bed": "res://Assets/Bed_Civilian/Bed_Civilian_F.tres",
-    "Nomad Bed": "res://Assets/Bed_Nomad/Bed_Nomad_F.tres",
+    
+    "-- Decor --": "",
+    "Lake Painting": "res://Assets/Painting/Painting_Lake_F.tres",
+    "Coat Rack": "res://Assets/Rack_Coat/Rack_Coat_F.tres",
+    "Rag Carpet": "res://Assets/Carpet/Carpet_Rag_F.tres",
+    "Persian Carpet": "res://Assets/Carpet/Carpet_Persian_F.tres",
+    "Rya Maria": "res://Assets/Rya/Rya_Maria_F.tres",
+    "Long Curtain": "res://Assets/Curtains/Curtain_Long_F.tres",
+    "Mini Curtain": "res://Assets/Curtains/Curtain_Mini_F.tres",
     "Weapon Display": "res://Assets/Weapon_Display/Weapon_Display_F.tres",
-    "Office Chair": "res://Assets/Chair_Office/Chair_Office_F.tres",
-    "School Chair": "res://Assets/Chair_School/Chair_School_F.tres",
     "Television": "res://Assets/Television/Television_F.tres",
     "Target Stand": "res://Assets/Target_Stand/Target_Stand_F.tres",
     "Border Zone Sign": "res://Assets/Sign_Border_Zone/Sign_Border_Zone_F.tres",
@@ -292,7 +338,7 @@ const FURNITURE = {
 }
 
 const MISC = {
-    # Electronics & Audio
+    "-- Electronics --": "",
     "Battery (Car)": "res://Items/Electronics/Battery/Battery.tres",
     "Batteries (Small)": "res://Items/Electronics/Batteries/Batteries.tres",
     "Battery Cables": "res://Items/Electronics/Battery_Cables/Battery_Cables.tres",
@@ -309,7 +355,7 @@ const MISC = {
     "Narva": "res://Items/Electronics/Narva/Narva.tres",
     "Alarm Clock": "res://Items/Electronics/Alarm_Clock/Alarm_Clock.tres",
     
-    # Utilities & Tools
+    "-- Utilities & Tools --": "",
     "Toolbox": "res://Items/Misc/Toolbox/Toolbox.tres",
     "Jerry Can": "res://Items/Misc/Jerry_Can/Jerry_Can.tres",
     "Weapon Repair Kit": "res://Items/Misc/Weapon_Repair_Kit/Weapon_Repair_Kit.tres",
@@ -324,7 +370,7 @@ const MISC = {
     "Water Lock": "res://Items/Misc/Water_Lock/Water_Lock.tres",
     "Can Empty": "res://Items/Consumables/Can_Empty/Can_Empty.tres",
     
-    # Comfort & Survival
+    "-- Survival --": "",
     "Sleeping Bag": "res://Items/Misc/Sleeping_Bag/Sleeping_Bag.tres",
     "Mattress": "res://Items/Misc/Mattress/Mattress.tres",
     "Pillow": "res://Items/Misc/Pillow/Pillow.tres",
@@ -334,24 +380,22 @@ const MISC = {
     "Coffee Filter": "res://Items/Misc/Coffee_Filter/Coffee_Filter.tres",
     "Rags": "res://Items/Misc/Rags/Rags.tres",
     "Board Game": "res://Items/Misc/Board_Game/Board_Game.tres",
-    
-    # Navigation & Intel
     "Map": "res://Items/Misc/Map/Map.tres",
     "Tactical Map": "res://Items/Misc/Map_Tactical/Map_Tactical.tres",
     
-    # Books
+    "-- Books --": "",
     "Children's Book": "res://Items/Books/Book_Children.tres",
     "Cooking Book": "res://Items/Books/Book_Cooking.tres",
     "Fishing Book": "res://Items/Books/Book_Fishing.tres",
     "Religion Book": "res://Items/Books/Book_Religion.tres",
     
-    # Instruments & Hobbies
+    "-- Music & Fishing --": "",
     "Guitar": "res://Items/Instruments/Guitar/Guitar.tres",
     "Harmonica": "res://Items/Instruments/Harmonica/Harmonica.tres",
     "Fishing Rod": "res://Items/Fishing/Fishing_Rod/Fishing_Rod.tres",
     "Tackle Box": "res://Items/Misc/Tackle_Box/Tackle_Box.tres",
     
-    # Lore
+    "-- Lore --": "",
     "Cat": "res://Items/Lore/Cat/Cat.tres",
     "Patient Report": "res://Items/Lore/Patient_Report/Patient_Report.tres",
     "Oil Sample": "res://Items/Lore/Oil_Sample/Oil_Sample.tres"

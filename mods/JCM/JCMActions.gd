@@ -12,6 +12,11 @@ static func spawn_item(mod: Node, db_category: Dictionary, index: int, amount: i
         if index >= 0 and index < options_list.size():
             var item_name = options_list[index]
             var item_path = db_category[item_name]
+
+            # If the path is empty, it's a UI header. Abort the spawn!
+            if item_path == "":
+                return
+
             var item_resource = load(item_path)
             
             if item_resource:
@@ -29,7 +34,9 @@ static func spawn_item(mod: Node, db_category: Dictionary, index: int, amount: i
                         newSlotData.amount = item_resource.maxAmount
                 
                 # Spawn Fully Loaded Weapons
-                if db_category == JCMDatabase.WEAPONS and mod.get("spawn_weaps_with_mag_enabled"):
+                var is_weapon_cat = db_category in [JCMDatabase.PRIMARY_WEAPONS, JCMDatabase.SECONDARY_WEAPONS]
+                
+                if is_weapon_cat and mod.get("spawn_weaps_with_mag_enabled"):
                     # Put a bullet in the chamber and fill the internal ammo counter
                     newSlotData.chamber = true 
                     if "magazineSize" in item_resource:

@@ -60,7 +60,8 @@ var sel_weather = 0
 var sel_event = 0
 var sel_map = 0
 var sel_shelter = 0
-var sel_weap = 0
+var sel_primary = 0
+var sel_secondary = 0
 var sel_mag = 0
 var sel_ammo = 0
 var sel_med = 0
@@ -179,7 +180,7 @@ func _try_add_modded_item(res):
 # Helper to ensure we don't accidentally list vanilla items in the modded category.
 func _is_vanilla_item(path: String) -> bool:
     if not JCMDatabase: return false
-    var all_dicts = [JCMDatabase.WEAPONS, JCMDatabase.MAGAZINES, JCMDatabase.AMMO, JCMDatabase.MEDICAL, JCMDatabase.GEAR, JCMDatabase.ATTACHMENTS, JCMDatabase.FOOD, JCMDatabase.KEYS, JCMDatabase.FURNITURE, JCMDatabase.MISC]
+    var all_dicts = [JCMDatabase.PRIMARY_WEAPONS, JCMDatabase.SECONDARY_WEAPONS, JCMDatabase.MAGAZINES, JCMDatabase.AMMO, JCMDatabase.MEDICAL, JCMDatabase.GEAR, JCMDatabase.ATTACHMENTS, JCMDatabase.FOOD, JCMDatabase.KEYS, JCMDatabase.FURNITURE, JCMDatabase.MISC]
     for d in all_dicts:
         if path in d.values():
             return true

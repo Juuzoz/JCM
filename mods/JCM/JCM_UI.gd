@@ -107,7 +107,8 @@ func populate_list(tab_name):
         scroll_list.add_child(search_box)
 
         # Vanilla Categories
-        _add_spawner("Weapon", main_mod.JCMDatabase.WEAPONS.keys(), "sel_weap")
+        _add_spawner("Primary", main_mod.JCMDatabase.PRIMARY_WEAPONS.keys(), "sel_primary")
+        _add_spawner("Secondary", main_mod.JCMDatabase.SECONDARY_WEAPONS.keys(), "sel_secondary")
         _add_spawner("Magazine", main_mod.JCMDatabase.MAGAZINES.keys(), "sel_mag")
         _add_spawner("Ammo (x300)", main_mod.JCMDatabase.AMMO.keys(), "sel_ammo")
         _add_spawner("Medical", main_mod.JCMDatabase.MEDICAL.keys(), "sel_med")
@@ -335,7 +336,8 @@ func _add_spawner(label_text, item_list, selection_var):
         
         # Map the UI category to the correct database dictionary
         match selection_var:
-            "sel_weap": dict = db.WEAPONS
+            "sel_primary": dict = db.PRIMARY_WEAPONS
+            "sel_secondary": dict = db.SECONDARY_WEAPONS
             "sel_mag": dict = db.MAGAZINES
             "sel_ammo": 
                 dict = db.AMMO
@@ -404,6 +406,23 @@ func _populate_spawner_dropdown(opt: OptionButton, full_list: Array, filter_text
     
     for i in range(full_list.size()):
         var item_name = full_list[i]
+        
+        # --- DETECT CATEGORY HEADERS ---
+        if item_name.begins_with("--") and item_name.ends_with("--"):
+            # Only show headers if the search bar is empty
+            if filter_text == "":
+                # Strip the "--" and spaces so Godot can style it natively
+                var clean_name = item_name.replace("--", "").strip_edges()
+                
+                # add_separator visually centers the text with lines and makes it unselectable!
+                opt.add_separator(clean_name) 
+                
+                # We still need to track the metadata index so the search bar doesn't break
+                var new_idx = opt.get_item_count() - 1
+                opt.set_item_metadata(new_idx, i)
+            continue 
+        # --------------------------------
+            
         if filter_text == "" or filter_text in item_name.to_lower():
             opt.add_item(item_name)
             opt.set_item_metadata(opt.get_item_count() - 1, i)
