@@ -303,6 +303,11 @@ func _add_spawner(label_text, item_list, selection_var):
     var opt = OptionButton.new()
     opt.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     
+    # Truncates long item names in the spawner
+    opt.fit_to_longest_item = false 
+    opt.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+
+    
     # Track this dropdown so the search bar can filter it later
     spawner_data.append({
         "opt": opt,

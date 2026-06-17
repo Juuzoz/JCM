@@ -1,7 +1,7 @@
 [mod]
 name="Juuzoz Cheat Menu"
 id="juuzoz-jcm"
-version="3.0.3"
+version="3.0.4"
 
 [autoload]
 jcm="res://mods/JCM/Main.gd"
