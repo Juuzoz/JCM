@@ -66,7 +66,10 @@ static func spawn_item(mod: Node, db_category: Dictionary, index: int, amount: i
                 
                 # ==========================================
                 
-                if db_category == JCMDatabase.FURNITURE:
+                # Check if it's from the vanilla furniture tab OR if the modded item's internal type is "Furniture"
+                var is_furniture = (db_category == JCMDatabase.FURNITURE) or (item_resource.get("type") == "Furniture")
+                
+                if is_furniture:
                     if interface.get("catalogGrid"):
                         interface.Create(newSlotData, interface.catalogGrid, false)
                         var loader = mod.get_node_or_null("/root/Loader")
