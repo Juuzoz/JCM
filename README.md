@@ -1,9 +1,9 @@
 # JCM - Juuzoz' Cheat Menu
 A debug menu mod for Road to Vostok (Godot)
 
-**13 000** total downloads across MWS and NexusMods as of **17/06/2026**
+**19 000** total downloads across VM, MWS and NexusMods as of **25/09/2026**
 
-**[ModWorkshop](https://modworkshop.net/mod/56031) / [NexusMods](https://nexusmods.com/roadtovostok/mods/1)**
+**[VostokMods](https://vostokmods.net/mod/juuzoz-cheat-menu-jcm) / [ModWorkshop](https://modworkshop.net/mod/56031) / [NexusMods](https://nexusmods.com/roadtovostok/mods/1)**
 
 The menu can be found in the inventory screen, by the map and crafting menu. It replaces the unused Nomads button.
 
