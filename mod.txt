@@ -1,11 +1,12 @@
 [mod]
 name="Juuzoz Cheat Menu"
 id="juuzoz-jcm"
-version="3.0.5"
+version="3.5.0"
+priority=-1
 
 [autoload]
 jcm="res://mods/JCM/Main.gd"
 
 [updates]
-
+source="vostokmods:019ff2ab-7fed-7a10-99c0-993a9bccae01"
 modworkshop=56031

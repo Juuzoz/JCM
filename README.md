@@ -1,7 +1,7 @@
 # JCM - Juuzoz' Cheat Menu
 A debug menu mod for Road to Vostok (Godot)
 
-**19 000** total downloads across VM, MWS and NexusMods as of **25/09/2026**
+**20 000+** total downloads across VM, MWS and NexusMods as of **19/10/2026**
 
 **[VostokMods](https://vostokmods.net/mod/juuzoz-cheat-menu-jcm) / [ModWorkshop](https://modworkshop.net/mod/56031) / [NexusMods](https://nexusmods.com/roadtovostok/mods/1)**
 
